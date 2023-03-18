@@ -1,4 +1,4 @@
-artifacts_root: artifacts
+artifacts_root: artifact
 
 data_ingestion:
   root_dir: 'artifact/data_ingestion'
@@ -10,3 +10,7 @@ data_transformation:
   preprocessed_obj_file_path: 'artifact/data_transformation/preprocessed.pkl'
   scaled_train_path: 'artifact/data_transformation/scaled_train.csv'
   scaled_test_path: 'artifact/data_transformation/scaled_test.csv'
+
+
+model_trainer:
+  trained_model_path: 'artifact/model_trainer/model.pkl'

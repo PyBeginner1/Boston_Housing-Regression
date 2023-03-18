@@ -6,9 +6,12 @@ import yaml
 import os
 import sys
 import dill
+import numpy as np
 
 from src.logger import logging
 from src.exception import CustomException
+
+from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -29,6 +32,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
     except BoxValueError:
         raise ValueError("yaml file is empty")
     except Exception as e:
+        logging.info(e)
         raise CustomException(e,sys)
     
 
@@ -51,6 +55,18 @@ def save_obj(file_path, obj):
         with open(file_path,'wb') as file_obj:
             dill.dump(obj, file_obj)
     except Exception as e:
+        logging.info(e)
+        raise CustomException(e,sys)
+    
+@ensure_annotations
+def eval_metrics(real, predicted):
+    try:
+        mae = mean_absolute_error(real, predicted)
+        rmse = np.sqrt(mean_squared_error(real, predicted))
+        r2 = r2_score(real, predicted)
+        return mae, rmse, r2
+    except Exception as e:
+        logging.info(e)
         raise CustomException(e,sys)
 
 

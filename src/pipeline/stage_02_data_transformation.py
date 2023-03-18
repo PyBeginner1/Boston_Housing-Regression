@@ -1,8 +1,6 @@
 import os
 import sys
 
-os.environ['PYTHONPATH'] = 'D:\iNeuron\Complete Project\Boston-Regression\Boston_Housing-Regression\src'
-
 from src.config import ConfigurationManager
 from src.components.data_transformation import DataTransformation
 from src.logger import logging
@@ -13,6 +11,7 @@ STAGE_NAME = "Data Transformation"
 
 train_path = r'Boston_Housing-Regression\artifact\data_ingestion\train.csv'
 test_path = r'Boston_Housing-Regression\artifact\data_ingestion\test.csv'
+
 
 #final_train_path = os.path.join(os.path.dirname(os.getcwd()), train_path)
 #final_test_path = os.path.join(os.path.dirname(os.getcwd()), test_path)

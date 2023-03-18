@@ -15,3 +15,8 @@ class DataTransformationConfig:
      preprocessed_obj_file_path: Path
      scaled_train_path : Path
      scaled_test_path : Path
+
+    
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    trained_model_path: Path

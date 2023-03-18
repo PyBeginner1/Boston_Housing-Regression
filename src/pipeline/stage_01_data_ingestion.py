@@ -1,7 +1,9 @@
 from src.components.data_ingestion import DataIngestion
 from src.config.configuration import ConfigurationManager
 from src.logger import logging
+from src.exception import CustomException
 
+import sys
 
 STAGE_NAME = "Data Ingestion"
 
@@ -24,4 +26,4 @@ if __name__ == "__main__":
         logging.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<\n\nx==========x")
     except Exception as e:
         logging.exception(e)
-        raise e
+        raise CustomException(e, sys)

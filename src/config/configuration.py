@@ -1,8 +1,10 @@
 from src.utils import create_directories, read_yaml
 from src.logger import logging
-from src.entity.config_entity import DataIngestionConfig, DataTransformationConfig
+from src.entity.config_entity import DataIngestionConfig, DataTransformationConfig, ModelTrainerConfig
 from src.constants import CONFIG_FILE_PATH, PARMS_FILE_PATH
+from src.exception import CustomException
 
+import sys
 
 class ConfigurationManager:
     def __init__(self,
@@ -13,7 +15,8 @@ class ConfigurationManager:
             self.params = read_yaml(params_file_path)
             create_directories([self.config.artifacts_root])
         except Exception as e:
-            raise e
+            logging.info(e)
+            raise CustomException(e,sys)
 
 
     def get_data_ingestion_config(self):
@@ -38,7 +41,8 @@ class ConfigurationManager:
             logging.info(f"Data Ingestion config: [{data_ingestion_config}]")
             return data_ingestion_config
         except Exception as e:
-            raise e
+            logging.info(e)
+            raise CustomException(e,sys)
         
     
     def get_data_transformation_config(self):
@@ -58,4 +62,21 @@ class ConfigurationManager:
 
             return data_transforamtion_config
         except Exception as e:
-            raise e
+            logging.info(e)
+            raise CustomException(e,sys)
+        
+        
+    def get_model_trainer_config(self):
+        try:
+            config=self.config.model_trainer
+
+            trained_model_path = config.trained_model_path
+
+            model_trainer_config=ModelTrainerConfig(
+                trained_model_path=trained_model_path
+            )
+
+            return model_trainer_config
+        except Exception as e:
+            logging.info(e)
+            raise CustomException(e,sys)
