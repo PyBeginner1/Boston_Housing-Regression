@@ -127,6 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-artifact/data_transformation/preprocessed.pkl
-artifact/data_transformation/scaled_test.csv
-artifact/data_transformation/scaled_train.csv
+
