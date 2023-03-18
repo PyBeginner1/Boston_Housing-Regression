@@ -10,7 +10,7 @@ def main():
         config = ConfigurationManager()
         data_ingestion_config = config.get_data_ingestion_config()
         component=DataIngestion(config=data_ingestion_config)
-        component.initiate_data_ingestion()
+        train, test = component.initiate_data_ingestion()
     except Exception as e:
         logging.info(f'Error: {e}')
         raise e
