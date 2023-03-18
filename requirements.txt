@@ -1,0 +1,9 @@
+numpy
+pandas
+scikit-learn
+ipykernel 
+ensure
+python-box
+scipy
+dill
+PyYAML
