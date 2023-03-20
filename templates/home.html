@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Boston Housing value Predictor</title>
+  </head>
+  <body>
+    <h1>Boston Housing value Predictor</h1>
+   
+    <form action="{{ url_for('predict_api')}}" method="post">
+      <p class="small"></p>
+      <label for="crim">CRIM:</label>
+      <input type="number" id="crim" name="crim"><br>
+
+      <p class="small"></p>
+      <label for="zn">ZN:</label>
+      <input type="number" id="zn" name="zn"><br>
+
+      <p class="small"></p>
+      <label for="indus">INDUS:</label>
+      <input type="number" id="indus" name="indus"><br>
+
+      <p class="small"></p>
+      <label for="chas">CHAS:</label>
+      <input type="number" id="chas" name="chas"><br>
+
+      <p class="small"></p>
+      <label for="nox">NOX:</label>
+      <input type="number" id="nox" name="nox"><br>
+
+      <p class="small"></p>
+      <label for="rm">RM:</label>
+      <input type="number" id="rm" name="rm"><br>
+
+      <p class="small"></p>
+      <label for="age">AGE:</label>
+      <input type="number" id="age" name="age"><br>
+
+      <p class="small"></p>
+      <label for="dis">DIS:</label>
+      <input type="number" id="dis" name="dis"><br>
+
+      <p class="small"></p>
+      <label for="rad">RAD:</label>
+      <input type="number" id="rad" name="rad"><br>
+
+      <p class="small"></p>
+      <label for="tax">TAX:</label>
+      <input type="number" id="tax" name="tax"><br>
+
+      <p class="small"></p>
+      <label for="ptratio">PTRATIO:</label>
+      <input type="number" id="ptratio" name="ptratio"><br>
+
+      <p class="small"></p>
+      <label for="b">B:</label>
+      <input type="number" id="b" name="b"><br>
+
+      <p class="small"></p>
+      <label for="lstat">LSTAT:</label>
+      <input type="number" id="lstat" name="lstat"><br>
+
+      <p class="small"></p>
+      <input type="submit" value="Submit">
+    </form>
+    <h2>
+      THE  prediction is {{result}}
+   </h2>
+  </body>
+</html>
