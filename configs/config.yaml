@@ -7,7 +7,7 @@ data_ingestion:
   test_data_path: 'artifact/data_ingestion/test.csv'
 
 data_transformation:
-  preprocessed_obj_file_path: 'artifact/data_transformation/preprocessed.pkl'
+  preprocessed_obj_file_path: 'artifact/data_transformation/preprocessor_object.pkl'
   scaled_train_path: 'artifact/data_transformation/scaled_train.csv'
   scaled_test_path: 'artifact/data_transformation/scaled_test.csv'
 

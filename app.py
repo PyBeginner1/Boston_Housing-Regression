@@ -17,7 +17,6 @@ def home():
 @app.route('/predict', methods=['GET','POST'])
 def predict_api():
     try:
-        print(request.method)
         if request.method=='GET':
             return render_template('home.html')
         else:
@@ -38,10 +37,11 @@ def predict_api():
             )
             
             df=data.get_data_as_dataframe()
+            print(df)
             predict_pipeline=PredictPipeline()
             final_result=predict_pipeline.prediction(df)
             print(final_result)
-            return render_template('home.html', result=final_result[0])
+            return render_template('home.html', result=round(final_result[0],3))
 
     except Exception as e:
         raise CustomException(e,sys)

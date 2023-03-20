@@ -15,14 +15,16 @@ class PredictPipeline:
 
     def prediction(self, features):
         try:
+            logging.info('Prediction has begun')
             model_path=os.path.join(CURRENT_DIR,'artifact\model_trainer\model.pkl')
-            preprocessor_path=os.path.join(CURRENT_DIR,'artifact\data_transformation\preprocessed.pkl')
+            preprocessor_path=os.path.join(CURRENT_DIR,'artifact\data_transformation\preprocessor_object.pkl')
             model=load_object(model_path)
             preprocessor=load_object(preprocessor_path)
             scaled_data=preprocessor.transform(features)
             prediction=model.predict(features)
             return prediction
         except Exception as e:
+            logging.error(f"Error: {e}")
             raise CustomException(e,sys)
 
 class CustomData:
@@ -70,8 +72,12 @@ class CustomData:
             "B":[self.B],
             "LSTAT":[self.LSTAT]
             }
-            return pd.DataFrame(custom_data_input_dict)
+            column_names = [
+            "CRIM", "ZN", "INDUS", "CHAS", "NOX", "RM", 
+            "AGE", "DIS", "RAD", "TAX", "PTRATIO", "B", "LSTAT"
+        ]
+            return pd.DataFrame(custom_data_input_dict,columns=column_names)
         except Exception as e:
-            logging.info(e)
+            logging.error(f"Failed to convert input data to DataFrame: {e}")
             raise CustomException(e,sys)
                 
