@@ -9,12 +9,12 @@ from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 application = Flask(__name__)
 
 
-@app.route('/')
+@application.route('/')
 def home():
     return render_template('index.html')
 
 
-@app.route('/predict', methods=['GET','POST'])
+@application.route('/predict', methods=['GET','POST'])
 def predict_api():
     try:
         if request.method=='GET':
