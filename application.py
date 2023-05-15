@@ -38,7 +38,6 @@ def predict_api():
             )
             
             df=data.get_data_as_dataframe()
-            print(df)
             predict_pipeline=PredictPipeline()
             final_result=predict_pipeline.prediction(df)
             return render_template('home.html', result=round(final_result[0],3))

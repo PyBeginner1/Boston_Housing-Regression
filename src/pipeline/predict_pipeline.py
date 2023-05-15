@@ -1,6 +1,7 @@
 import sys
 import pandas as pd
 import os
+from pathlib import Path
 
 from src.exception import CustomException
 from src.logger import logging
@@ -16,8 +17,8 @@ class PredictPipeline:
     def prediction(self, features):
         try:
             logging.info('Prediction has begun')
-            model_path=os.path.join(CURRENT_DIR,'artifact\model_trainer\model.pkl')
-            preprocessor_path=os.path.join(CURRENT_DIR,'artifact\data_transformation\preprocessor_object.pkl')
+            model_path=os.path.join(CURRENT_DIR,Path('artifact\model_trainer\model.pkl'))
+            preprocessor_path=os.path.join(CURRENT_DIR,Path('artifact\data_transformation\preprocessor_object.pkl'))
             model=load_object(model_path)
             preprocessor=load_object(preprocessor_path)
             scaled_data=preprocessor.transform(features)
