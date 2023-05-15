@@ -11,16 +11,19 @@ CURRENT_DIR = os.getcwd()
 
 
 class PredictPipeline:
-    def __init(self):
-        pass
+    def __init__(self, model_path, preprocessor_path):
+        try:
+            self.model_path = model_path
+            self.preprocessor_path = preprocessor_path
+        except Exception as e:
+            logging.error(f"Error: {e}")
+            raise CustomException(e,sys)
 
     def prediction(self, features):
         try:
             logging.info('Prediction has begun')
-            model_path=os.path.join(CURRENT_DIR,Path('artifact\model_trainer\model.pkl'))
-            preprocessor_path=os.path.join(CURRENT_DIR,Path('artifact\data_transformation\preprocessor_object.pkl'))
-            model=load_object(model_path)
-            preprocessor=load_object(preprocessor_path)
+            model=load_object(self.model_path)
+            preprocessor=load_object(self.preprocessor_path)
             scaled_data=preprocessor.transform(features)
             prediction=model.predict(scaled_data)
             return prediction

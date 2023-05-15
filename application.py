@@ -2,9 +2,19 @@ import pandas as pd
 import numpy as np
 import sys
 from flask import Flask, request, render_template
+import os
 
 from src.exception import CustomException
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
+
+ROOT_DIR = os.getcwd()
+PREPROCESSOR_DIR = 'artifact\data_transformation'
+MODEL_DIR = 'artifact\model_trainer'
+preprocessor = 'preprocessor_object.pkl'
+model = 'model.pkl'
+
+PREPROCESSOR_PATH = os.path.join(ROOT_DIR, PREPROCESSOR_DIR, preprocessor)
+MODEL_PATH = os.path.join(ROOT_DIR, MODEL_DIR, model)
 
 application = Flask(__name__)
 app = application
@@ -38,7 +48,7 @@ def predict_api():
             )
             
             df=data.get_data_as_dataframe()
-            predict_pipeline=PredictPipeline()
+            predict_pipeline=PredictPipeline(model_path = MODEL_PATH, preprocessor_path = PREPROCESSOR_PATH)
             final_result=predict_pipeline.prediction(df)
             return render_template('home.html', result=round(final_result[0],3))
 
