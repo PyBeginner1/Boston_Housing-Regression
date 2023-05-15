@@ -7,14 +7,15 @@ from src.exception import CustomException
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 application = Flask(__name__)
+app = application
 
 
-@application.route('/')
+@app.route('/')
 def home():
     return render_template('index.html')
 
 
-@application.route('/predict', methods=['GET','POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict_api():
     try:
         if request.method=='GET':
@@ -40,7 +41,6 @@ def predict_api():
             print(df)
             predict_pipeline=PredictPipeline()
             final_result=predict_pipeline.prediction(df)
-            print(final_result)
             return render_template('home.html', result=round(final_result[0],3))
 
     except Exception as e:
@@ -48,4 +48,4 @@ def predict_api():
 
 
 if __name__=='__main__':
-    application.run(host="0.0.0.0")
+    app.run(host="0.0.0.0")
