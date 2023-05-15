@@ -22,7 +22,7 @@ class PredictPipeline:
             model=load_object(model_path)
             preprocessor=load_object(preprocessor_path)
             scaled_data=preprocessor.transform(features)
-            prediction=model.predict(features)
+            prediction=model.predict(scaled_data)
             return prediction
         except Exception as e:
             logging.error(f"Error: {e}")
