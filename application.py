@@ -13,8 +13,10 @@ MODEL_DIR = 'artifact\model_trainer'
 preprocessor = 'preprocessor_object.pkl'
 model = 'model.pkl'
 
-PREPROCESSOR_PATH = os.path.join(ROOT_DIR, PREPROCESSOR_DIR, preprocessor)
-MODEL_PATH = os.path.join(ROOT_DIR, MODEL_DIR, model)
+SAVED_MODEL_DIR = 'saved_models'
+
+PREPROCESSOR_PATH = os.path.join(ROOT_DIR, SAVED_MODEL_DIR, preprocessor)
+MODEL_PATH = os.path.join(ROOT_DIR, SAVED_MODEL_DIR, model)
 
 application = Flask(__name__)
 app = application
